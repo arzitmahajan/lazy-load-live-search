@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import Navabr from './Component/Navabr';
+import NewsComponent from './Component/NewsComponent';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import LiveNewsComponent from './Component/LiveNewsComponent';
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Navabr />
+        <h1 className='text-center my-3'>Top Headlines</h1>
+        <Routes>
+          <Route exact path="/"element={<NewsComponent pageSize={8}/>}/>
+          <Route exact path="/lazy-load"element={<LiveNewsComponent pageSize={8}/>}/>
+        </Routes>
+      </Router>
+
     </div>
   );
 }
